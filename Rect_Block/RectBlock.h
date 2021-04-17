@@ -2,6 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 
+/*
+RectBlock class:
+*/
+
 enum axis
 {
     x, y
@@ -10,11 +14,12 @@ enum axis
 class RectBlock
 {
     private:
-
+        //position: x = [0], y = [1]
         float position[2];
-        float size_multiplier;
+
         float length;
         float height;
+
         int value;
 
         sf::Color color = sf::Color::White;
@@ -28,12 +33,28 @@ class RectBlock
 
     public:
 
-        RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const int &value, const float &size_multiplier = 1);
+        //main constructor
+        RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const int &value);
+
+        //set a new position for the rectangle
         void setPosition(const float &positionX, const float &positionY);
-        void resize(const float &length, const float &height);
+
+        //change the color of the rectangle
+        void changeColor(const sf::Color &color);
+
+        //change the color of the rectangle back to the default color: white
+        void changeBackToDefaultColor();
+
+        //get the rectangle's x value
         float getPositionX();
+
+        //get the rectangle's y value
         float getPositionY();
-        float getSize();
-        sf::RectangleShape display();
+
+        //get the height
+        float getValue();
+
+        //return the rectangle offered by SFML
+        sf::RectangleShape display(); 
 
 };

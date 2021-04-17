@@ -1,10 +1,9 @@
 #include "RectBlock.h"
 
-RectBlock::RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const int &value, const float &size_multiplier)
+RectBlock::RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const int &value)
 {
     this->position[axis::x] = positionX;
     this->position[axis::y] = positionY;
-    this->size_multiplier = size_multiplier;
     this->length = length;
     this->height = height;
     this->value = value;
@@ -15,8 +14,6 @@ RectBlock::RectBlock(const float &length, const float &height, const float &posi
 }
 
 void RectBlock::setBlockPosition() {block.setPosition(sf::Vector2f(this->position[axis::x], this->position[axis::y]));}
-
-void RectBlock::resizeBlock() {block.setSize(sf::Vector2f(this->length, (this->height * this->size_multiplier)));}
 
 void RectBlock::setBlockColor() 
 {
@@ -32,9 +29,13 @@ void RectBlock::setPosition(const float &positionX, const float &positionY)
     this->setBlockPosition();
 }
 
+void RectBlock::changeColor(const sf::Color &color) {this->block.setFillColor(color);}
+
+void RectBlock::changeBackToDefaultColor() {this->block.setFillColor(sf::Color::White);}
+
 float RectBlock::getPositionX() {return this->position[axis::x];}
 float RectBlock::getPositionY() {return this->position[axis::y];}
-float RectBlock::getSize() {return this->size_multiplier;}
+
 sf::RectangleShape RectBlock::display() {return this->block;}
 
 
