@@ -28,7 +28,7 @@ class RectBlock
 
     public:
 
-        RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const float &size_multiplier = 1);
+        RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const int &value, const float &size_multiplier = 1);
         void setPosition(const float &positionX, const float &positionY);
         void resize(const float &length, const float &height);
         float getPositionX();

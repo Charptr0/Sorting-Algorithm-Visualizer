@@ -1,12 +1,13 @@
 #include "RectBlock.h"
 
-RectBlock::RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const float &size_multiplier)
+RectBlock::RectBlock(const float &length, const float &height, const float &positionX, const float &positionY, const int &value, const float &size_multiplier)
 {
     this->position[axis::x] = positionX;
     this->position[axis::y] = positionY;
     this->size_multiplier = size_multiplier;
     this->length = length;
     this->height = height;
+    this->value = value;
 
     this->setBlockPosition();
     this->resizeBlock();
