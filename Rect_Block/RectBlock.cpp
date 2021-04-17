@@ -17,7 +17,12 @@ void RectBlock::setBlockPosition() {block.setPosition(sf::Vector2f(this->positio
 
 void RectBlock::resizeBlock() {block.setSize(sf::Vector2f(this->length, (this->height * this->size_multiplier)));}
 
-void RectBlock::setBlockColor() {block.setFillColor(this->color);}
+void RectBlock::setBlockColor() 
+{
+    block.setFillColor(this->color);
+    block.setOutlineColor(this->borderColor);
+    block.setOutlineThickness(1.0f);
+}
 
 void RectBlock::setPosition(const float &positionX, const float &positionY)
 {
