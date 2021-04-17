@@ -1,9 +1,27 @@
-//#include <SFML/Graphics.hpp>
 #include <vector>
 #include "constants.cpp"
 #include "Rect_Block/RectBlock.cpp"
 
 using std::vector;
+
+vector<RectBlock> generateBlocks(size_t amount)
+{
+    vector<RectBlock>blocks;
+
+    float offset = 0.f;
+    float rectLength = (RESOLUTION_X/(float)amount);
+
+
+    for(int i = 0; i < amount; i++)
+    {
+        RectBlock block(rectLength,100.f, offset, RESOLUTION_Y-100);
+        blocks.push_back(block);
+        offset += rectLength;
+    }
+
+    return blocks;
+}
+
 
 int main()
 {
@@ -11,19 +29,7 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE);
 
-    RectBlock r1(50.f,100.f,0,RESOLUTION_Y-100);
-    RectBlock r2(50.f,200.f,50,RESOLUTION_Y-200);
-
-    /*
-    sf::RectangleShape rectangle(sf::Vector2f(50.f, 100.f));
-    sf::RectangleShape rectangle2(sf::Vector2f(50.f, 200.f));
-
-    rectangle.setFillColor(sf::Color::White);
-    rectangle.setPosition(sf::Vector2f(0,RESOLUTION_Y-100));
-
-    rectangle2.setFillColor(sf::Color::White);
-    rectangle2.setPosition(sf::Vector2f(50,RESOLUTION_Y-200));
-    */
+    vector<RectBlock>list_of_all_blocks = generateBlocks(5);
 
     while(screen.isOpen())
     {
@@ -35,8 +41,14 @@ int main()
         }
 
         screen.clear(sf::Color::Black);
-        screen.draw(r1.display());
-        screen.draw(r2.display());
+
+        
+        for(int i = 0; i < list_of_all_blocks.size(); i++)
+        {
+            screen.draw(list_of_all_blocks[i].display());
+        }
+        
+
         screen.display();
 
     }
