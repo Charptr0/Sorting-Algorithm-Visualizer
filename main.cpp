@@ -1,22 +1,44 @@
 #include <vector>
+#include <ctime> //random number generator
 #include "constants.cpp"
 #include "Rect_Block/RectBlock.cpp"
 
 using std::vector;
 
+vector<int> numberGenerator(size_t amount, size_t upperBound = 100)
+{
+    srand(time(NULL)); //start the clock
+
+    vector<int>randomNums;
+
+    for(size_t i = 0; i < amount; i++)
+    {
+        int rand_num = rand() % (upperBound + 1);
+        rand_num++;
+
+        randomNums.push_back(rand_num);
+    }
+
+    return randomNums;
+}
+
 vector<RectBlock> generateBlocks(size_t amount)
 {
     vector<RectBlock>blocks;
+    vector<int>randomNums = numberGenerator(amount, 300);
 
-    float offset = 0.f;
+    float offset_x = 0.f;
     float rectLength = (RESOLUTION_X/(float)amount);
 
 
     for(int i = 0; i < amount; i++)
     {
-        RectBlock block(rectLength,100.f, offset, RESOLUTION_Y-100);
+        int block_value = (float)randomNums[i];
+        float rectHeight = block_value * SIZE_AMPLIFIER;
+
+        RectBlock block(rectLength, rectHeight, offset_x, RESOLUTION_Y-rectHeight, block_value);
         blocks.push_back(block);
-        offset += rectLength;
+        offset_x += rectLength;
     }
 
     return blocks;
@@ -29,7 +51,7 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE);
 
-    vector<RectBlock>list_of_all_blocks = generateBlocks(5);
+    vector<RectBlock>list_of_all_blocks = generateBlocks(100);
 
     while(screen.isOpen())
     {
