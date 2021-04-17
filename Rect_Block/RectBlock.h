@@ -15,8 +15,10 @@ class RectBlock
         float size_multiplier;
         float length;
         float height;
+        int value;
 
         sf::Color color = sf::Color::White;
+        sf::Color borderColor = sf::Color::Green;
         sf::RectangleShape block;
 
         void setBlockPosition();
