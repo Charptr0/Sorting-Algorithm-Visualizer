@@ -15,10 +15,7 @@ RectBlock::RectBlock(const float &length, const float &height, const float &posi
 
 void RectBlock::setBlockPosition() {this->block.setPosition(sf::Vector2f(this->position[axis::x], this->position[axis::y]));}
 
-void RectBlock::setSize()
-{
-    this->block.setSize(sf::Vector2f(this->length, this->height));
-}
+void RectBlock::setSize() {this->block.setSize(sf::Vector2f(this->length, this->height));}
 
 void RectBlock::setBlockColor() 
 {
@@ -34,7 +31,11 @@ void RectBlock::setPosition(const float &positionX, const float &positionY)
     this->setBlockPosition();
 }
 
-void RectBlock::changeColor(const sf::Color &color) {this->block.setFillColor(color);}
+void RectBlock::changeColor(const sf::Color &color) 
+{
+    this->color = color;
+    this->block.setFillColor(color);
+}
 
 void RectBlock::changeBackToDefaultColor() {this->block.setFillColor(sf::Color::White);}
 

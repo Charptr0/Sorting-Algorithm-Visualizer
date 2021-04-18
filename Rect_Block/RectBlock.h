@@ -23,7 +23,7 @@ class RectBlock
         int value;
 
         sf::Color color = sf::Color::White;
-        sf::Color borderColor = sf::Color::Green;
+        sf::Color borderColor = sf::Color::White;
         sf::RectangleShape block;
 
         void setBlockPosition();

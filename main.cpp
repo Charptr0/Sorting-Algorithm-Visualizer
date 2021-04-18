@@ -40,6 +40,7 @@ vector<RectBlock> generateBlocks(size_t amount)
         RectBlock block(rectLength, rectHeight, offset_x, RESOLUTION_Y-rectHeight, block_value);
         blocks.push_back(block);
         offset_x += rectLength;
+        block.changeColor(sf::Color::Red);
     }
 
     return blocks;
@@ -52,7 +53,9 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE);
 
-    vector<RectBlock>list_of_all_blocks = generateBlocks(100);
+    vector<RectBlock>list_of_all_blocks = generateBlocks(10);
+
+    int j = 0;
 
     while(screen.isOpen())
     {
@@ -67,10 +70,22 @@ int main()
 
         for(int i = 0; i < list_of_all_blocks.size(); i++)
         {
+            if(j < list_of_all_blocks.size())
+            {
+                list_of_all_blocks[j].changeColor(sf::Color::Red);
+            }
+
             screen.draw(list_of_all_blocks[i].display());
+
+            if(j < list_of_all_blocks.size())
+            {
+                list_of_all_blocks[j].changeColor(sf::Color::White);
+            }
+
         }
 
         screen.display();
+        j++;
 
     }
 
