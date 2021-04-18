@@ -2,3 +2,4 @@ app
 main.o
 run.sh
 Makefile
+.vscode
