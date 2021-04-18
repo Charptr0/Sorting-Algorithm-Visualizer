@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 #include <ctime> //random number generator
 #include "constants.cpp"
 #include "Rect_Block/RectBlock.cpp"
@@ -64,12 +65,10 @@ int main()
 
         screen.clear(sf::Color::Black);
 
-        
         for(int i = 0; i < list_of_all_blocks.size(); i++)
         {
             screen.draw(list_of_all_blocks[i].display());
         }
-        
 
         screen.display();
 

@@ -9,17 +9,22 @@ RectBlock::RectBlock(const float &length, const float &height, const float &posi
     this->value = value;
 
     this->setBlockPosition();
-    this->resizeBlock();
+    this->setSize();
     this->setBlockColor();
 }
 
-void RectBlock::setBlockPosition() {block.setPosition(sf::Vector2f(this->position[axis::x], this->position[axis::y]));}
+void RectBlock::setBlockPosition() {this->block.setPosition(sf::Vector2f(this->position[axis::x], this->position[axis::y]));}
+
+void RectBlock::setSize()
+{
+    this->block.setSize(sf::Vector2f(this->length, this->height));
+}
 
 void RectBlock::setBlockColor() 
 {
-    block.setFillColor(this->color);
-    block.setOutlineColor(this->borderColor);
-    block.setOutlineThickness(1.0f);
+    this->block.setFillColor(this->color);
+    this->block.setOutlineColor(this->borderColor);
+    this->block.setOutlineThickness(1.0f);
 }
 
 void RectBlock::setPosition(const float &positionX, const float &positionY)

@@ -28,7 +28,7 @@ class RectBlock
 
         void setBlockPosition();
         void setBlockColor();
-        void resizeBlock();
+        void setSize();
 
 
     public:
