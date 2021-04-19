@@ -9,4 +9,4 @@ Please check out the beta branch for experimental builds.
 0.1
 
 ## Version 0.1 Demo (Bubble Sort)
-<img src="https://i.imgur.com/P6FJ4Nq.gif" width=500px></img
+<img src="https://i.imgur.com/P6FJ4Nq.gif" width=500px></img>
