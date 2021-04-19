@@ -1,8 +1,8 @@
+#include <SFML/Graphics.hpp>
 #include <vector>
-#include <iostream>
 #include <ctime> //random number generator
 #include "constants.cpp"
-#include "Rect_Block/RectBlock.cpp"
+
 
 using std::vector;
 
@@ -23,27 +23,59 @@ vector<int> numberGenerator(size_t amount, size_t upperBound = 100)
     return randomNums;
 }
 
-vector<RectBlock> generateBlocks(size_t amount)
+//this is here to prevent the window from freezing, idk any good way to do this
+//this does the job, dont touch plz
+//scatter this function into other sorting functions to prevent it from freezing
+void grabEvents(sf::RenderWindow &screen) 
 {
-    vector<RectBlock>blocks;
-    vector<int>randomNums = numberGenerator(amount, 300);
+    sf::Event event;
+    while (screen.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+            screen.close();
+    }
+}
+
+void drawToScreen(vector<int>&nums, sf::RenderWindow &screen)
+{
+    screen.clear(sf::Color::Black);
 
     float offset_x = 0.f;
-    float rectLength = (RESOLUTION_X/(float)amount);
+    float rectLength = (RESOLUTION_X/(float)nums.size());
 
-
-    for(int i = 0; i < amount; i++)
+    for(int i = 0; i < nums.size(); i++)
     {
-        int block_value = (float)randomNums[i];
-        float rectHeight = block_value * SIZE_AMPLIFIER;
-
-        RectBlock block(rectLength, rectHeight, offset_x, RESOLUTION_Y-rectHeight, block_value);
-        blocks.push_back(block);
+        grabEvents(screen);
+        float rectHeight = nums[i] * SIZE_AMPLIFIER;
+        sf::RectangleShape block;
+        block.setFillColor(sf::Color::White);
+        block.setPosition(sf::Vector2f(offset_x, RESOLUTION_Y-rectHeight));
+        block.setSize(sf::Vector2f(rectLength, rectHeight));
+        screen.draw(block);
         offset_x += rectLength;
-        block.changeColor(sf::Color::Red);
     }
 
-    return blocks;
+    screen.display();
+}
+
+void bubbleSort(vector<int>&nums, sf::RenderWindow &screen)
+{
+    for(int i = 0; i < nums.size(); i++)
+    {
+        for(int j = 0; j < nums.size()-1; j++)
+        {
+            grabEvents(screen);
+
+            if(nums[j] > nums[j+1])
+            {
+                int temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
+            }
+
+            drawToScreen(nums, screen); 
+        }
+    }
 }
 
 
@@ -53,40 +85,12 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE);
 
-    vector<RectBlock>list_of_all_blocks = generateBlocks(10);
-
-    int j = 0;
+    vector<int>nums = numberGenerator(1000);
 
     while(screen.isOpen())
     {
-        sf::Event event;
-        while (screen.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                screen.close();
-        }
-
-        screen.clear(sf::Color::Black);
-
-        for(int i = 0; i < list_of_all_blocks.size(); i++)
-        {
-            if(j < list_of_all_blocks.size())
-            {
-                list_of_all_blocks[j].changeColor(sf::Color::Red);
-            }
-
-            screen.draw(list_of_all_blocks[i].display());
-
-            if(j < list_of_all_blocks.size())
-            {
-                list_of_all_blocks[j].changeColor(sf::Color::White);
-            }
-
-        }
-
-        screen.display();
-        j++;
-
+        grabEvents(screen);
+        bubbleSort(nums, screen);
     }
 
 }
