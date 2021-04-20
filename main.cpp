@@ -2,8 +2,14 @@
 #include <vector> //dynamic array to store numbers
 #include <ctime> //random number generator
 #include "constants.cpp"
+#include "Text_Manager/text.cpp"
 
 using std::vector;
+
+//global variables
+int Number_of_comparsions = 0;
+Text ComparsionText("Comparsions Made: " + std::to_string(Number_of_comparsions), 0, 0, 0.8f);
+//global variables
 
 //generate a random number
 vector<int> numberGenerator(size_t amount, size_t upperBound = 100)
@@ -62,6 +68,7 @@ void drawToScreen(vector<int>&nums, sf::RenderWindow &screen)
         offset_x += rectLength; //increase the x value so it is ready for the next rectangle
     }
 
+    screen.draw(ComparsionText.getText());
     screen.display();
 }
 
@@ -73,6 +80,8 @@ void bubbleSort(vector<int>&nums, sf::RenderWindow &screen)
         for(int j = 0; j < nums.size()-1; j++)
         {
             grabEvents(screen);
+            
+            ComparsionText.updateText("Comarsion Made: " + std::to_string(++Number_of_comparsions));
 
             if(nums[j] > nums[j+1])
             {
@@ -122,6 +131,7 @@ void colorBlocksGreen(const vector<int>&nums, sf::RenderWindow &screen, int inde
         //same code from drawToScreen()
     }
 
+    screen.draw(ComparsionText.getText());
     screen.display();
 
     colorBlocksGreen(nums, screen, ++index);  //recursion, increment the index by 1
@@ -132,10 +142,11 @@ int main()
     sf::RenderWindow screen;
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE); //create the screen and add the title
+
     bool sorted = false;
     bool temp = false;
 
-    vector<int>nums = numberGenerator(100); //create the number of rectangles
+    vector<int>nums = numberGenerator(500); //create the number of rectangles
 
     while(screen.isOpen())
     {
