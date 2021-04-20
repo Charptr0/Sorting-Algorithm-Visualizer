@@ -146,7 +146,7 @@ int main()
     bool sorted = false;
     bool temp = false;
 
-    vector<int>nums = numberGenerator(500); //create the number of rectangles
+    vector<int>nums = numberGenerator(100); //create the number of rectangles
 
     while(screen.isOpen())
     {
