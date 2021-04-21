@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
 #include <vector> //dynamic array to store numbers
 #include <ctime> //random number generator
 #include "constants.cpp"
@@ -7,9 +9,14 @@
 using std::vector;
 
 //global variables
+sf::Clock GlobalClock; //start the clock
 int Number_of_comparsions = 0;
-Text ComparsionText(std::to_string(Number_of_comparsions) + "Comparsions", 0, 0, 0.8f);
+Text ComparsionText(std::to_string(Number_of_comparsions) + "Comparsions", 0, 0, TEXT_SIZE);
+Text AuthorText("Made by Charptr0", RESOLUTION_X-200, 0, TEXT_SIZE);
+Text ElaspedTimeText("Elasped Time: 0s", RESOLUTION_X-(RESOLUTION_X*0.8), 0, TEXT_SIZE);
+Text CurrentAlgorithmText("Current Algorithm: Bubble Sort ", RESOLUTION_X-(RESOLUTION_X*0.5), 0, TEXT_SIZE);
 //global variables
+
 
 //generate a random number
 vector<int> numberGenerator(size_t amount, size_t upperBound = 100)
@@ -71,6 +78,13 @@ void drawToScreen(vector<int>&nums, sf::RenderWindow &screen)
     }
 
     screen.draw(ComparsionText.getText());
+    screen.draw(AuthorText.getText());
+
+    sf::Time elaspedTime = GlobalClock.getElapsedTime();
+    ElaspedTimeText.updateText("Elasped Time: " + std::to_string(elaspedTime.asSeconds()) + "s");
+    screen.draw(ElaspedTimeText.getText());
+
+    screen.draw(CurrentAlgorithmText.getText());
     screen.display();
 }
 
@@ -135,7 +149,15 @@ void colorBlocksGreen(const vector<int>&nums, sf::RenderWindow &screen, int inde
         //same code from drawToScreen()
     }
 
+
     screen.draw(ComparsionText.getText());
+    screen.draw(AuthorText.getText());
+
+    sf::Time elaspedTime = GlobalClock.getElapsedTime();
+    ElaspedTimeText.updateText("Elasped Time: " + std::to_string(elaspedTime.asSeconds()) + "s");
+    screen.draw(ElaspedTimeText.getText());
+
+    screen.draw(CurrentAlgorithmText.getText());
     screen.display();
 
     colorBlocksGreen(nums, screen, ++index);  //recursion, increment the index by 1
@@ -147,10 +169,13 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE); //create the screen and add the title
 
+    //temp var fixing it later
     bool sorted = false;
     bool temp = false;
 
-    vector<int>nums = numberGenerator(100); //create the number of rectangles
+    vector<int>nums = numberGenerator(90); //create the number of rectangles
+
+    GlobalClock.restart(); //set the timer back to 0
 
     while(screen.isOpen())
     {
@@ -158,7 +183,6 @@ int main()
 
         if(!sorted) {bubbleSort(nums, screen); sorted = true;}
         if(!temp) {colorBlocksGreen(nums, screen); temp = true;}
-
     }
 
 }
