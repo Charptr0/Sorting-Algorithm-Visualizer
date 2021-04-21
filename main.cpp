@@ -8,7 +8,7 @@ using std::vector;
 
 //global variables
 int Number_of_comparsions = 0;
-Text ComparsionText("Comparsions Made: " + std::to_string(Number_of_comparsions), 0, 0, 0.8f);
+Text ComparsionText(std::to_string(Number_of_comparsions) + "Comparsions", 0, 0, 0.8f);
 //global variables
 
 //generate a random number
@@ -60,6 +60,8 @@ void drawToScreen(vector<int>&nums, sf::RenderWindow &screen)
         sf::RectangleShape block;
 
         block.setFillColor(sf::Color::White); //set the rectangle color to white
+        block.setOutlineColor(sf::Color::Magenta);
+        block.setOutlineThickness(2.f);
         block.setPosition(sf::Vector2f(offset_x, RESOLUTION_Y-rectHeight)); //set the position
         block.setSize(sf::Vector2f(rectLength, rectHeight)); 
 
@@ -81,7 +83,7 @@ void bubbleSort(vector<int>&nums, sf::RenderWindow &screen)
         {
             grabEvents(screen);
             
-            ComparsionText.updateText("Comarsion Made: " + std::to_string(++Number_of_comparsions));
+            ComparsionText.updateText(std::to_string(++Number_of_comparsions) + " Comparsions");
 
             if(nums[j] > nums[j+1])
             {
@@ -122,6 +124,8 @@ void colorBlocksGreen(const vector<int>&nums, sf::RenderWindow &screen, int inde
         else {block.setFillColor(sf::Color::White);} //any block that is after the index var, color it white
 
         //same code from drawToScreen()
+        block.setOutlineColor(sf::Color::Magenta);
+        block.setOutlineThickness(2.f);
         block.setPosition(sf::Vector2f(offset_x, RESOLUTION_Y-rectHeight));
         block.setSize(sf::Vector2f(rectLength, rectHeight));
 
@@ -146,7 +150,7 @@ int main()
     bool sorted = false;
     bool temp = false;
 
-    vector<int>nums = numberGenerator(500); //create the number of rectangles
+    vector<int>nums = numberGenerator(100); //create the number of rectangles
 
     while(screen.isOpen())
     {
