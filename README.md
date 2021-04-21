@@ -6,7 +6,7 @@ The master branch is only used for official stable releases.
 Please check out the beta branch for experimental builds.
 
 ## Version
-0.3
+0.7
 
-## Version 0.1 Demo (Bubble Sort)
-<img src="https://i.imgur.com/P6FJ4Nq.gif" width=500px></img>
+## Version 0.7 Demo (Bubble Sort)
+<img src="https://i.imgur.com/WTLWW7n.gif" width=500px></img>
