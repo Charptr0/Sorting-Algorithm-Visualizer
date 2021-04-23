@@ -16,7 +16,7 @@ int Number_of_comparsions = 0;
 Text ComparsionText(std::to_string(Number_of_comparsions) + "Comparsions", 0, 0, TEXT_SIZE);
 Text AuthorText("Made by Charptr0", RESOLUTION_X-200, 0, TEXT_SIZE);
 Text ElaspedTimeText("Elasped Time: 0s", RESOLUTION_X-(RESOLUTION_X*0.8), 0, TEXT_SIZE);
-Text CurrentAlgorithmText("Current Algorithm: Bubble Sort ", RESOLUTION_X-(RESOLUTION_X*0.5), 0, TEXT_SIZE);
+Text CurrentAlgorithmText("Current Algorithm: Bubblesort ", RESOLUTION_X-(RESOLUTION_X*0.5), 0, TEXT_SIZE);
 
 void grabEvents(sf::RenderWindow &screen) 
 {
@@ -74,6 +74,8 @@ void drawToScreen(vector<int>&nums, sf::RenderWindow &screen)
         offset_x += rectLength; //increase the x value so it is ready for the next rectangle
     }
 
+    //display text
+    //==========================================================================================
     screen.draw(ComparsionText.getText());
     screen.draw(AuthorText.getText());
 
@@ -83,8 +85,10 @@ void drawToScreen(vector<int>&nums, sf::RenderWindow &screen)
 
     screen.draw(CurrentAlgorithmText.getText());
     screen.display();
+    //==========================================================================================
 }
 
+//color the rectangle green when the algo is done
 void colorBlocksGreen(const vector<int>&nums, sf::RenderWindow &screen, int index = 0)
 {
     if(index == nums.size()) {return;} //base case: once it has cycle thru the whole array, terminate the function

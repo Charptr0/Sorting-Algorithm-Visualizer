@@ -3,6 +3,42 @@
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
 
+void intermission(sf::RenderWindow &screen, char &currentSort, const char nextSort)
+{
+    std::string next_algo_name = "Up Next: ";
+
+    //depending on the next sorting algo, update the text
+    switch(nextSort)
+    {
+        case BUBBLE_SORT:
+            next_algo_name += "Bubblesort";
+            break;
+        
+        case SELECTION_SORT:
+            next_algo_name += "Selectionsort";
+            break;
+
+        default:
+            break;
+    }
+
+    Text upNextText(next_algo_name, RESOLUTION_X-(RESOLUTION_X*0.6), RESOLUTION_Y-(RESOLUTION_Y*0.8));
+
+    GlobalClock.restart();
+    sf::Time elaspedTime = GlobalClock.getElapsedTime();
+
+    //notify the user of the next sort
+    screen.draw(upNextText.getText());
+    screen.display();
+
+    while(elaspedTime.asSeconds() < 5.0f) //wait 5 seconds before the next sort
+    {
+        grabEvents(screen);
+        elaspedTime = GlobalClock.getElapsedTime();
+    }
+
+    currentSort = nextSort; //update the currentSort to the next sort
+}
 
 int main()
 {
@@ -23,11 +59,14 @@ int main()
         switch(currentSort)
         {
             case BUBBLE_SORT:
-                nums = numberGenerator(100); //create the number of rectangles
+                GlobalClock.restart(); //reset the elasped time
+                nums = numberGenerator(100); //create the array of unsorted numbers
+                
                 bubbleSort(nums, screen);
                 colorBlocksGreen(nums, screen);
-
-                currentSort = NONE;
+                
+                intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
+                Number_of_comparsions = 0; //reset the comparsions
                 break;
 
             default:
