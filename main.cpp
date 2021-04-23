@@ -1,5 +1,6 @@
 #include "Algorithms/algo_list.cpp"
 #include "Algorithms/bubblesort.cpp"
+#include "Algorithms/selectionsort.cpp"
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
 
@@ -60,14 +61,28 @@ int main()
         {
             case BUBBLE_SORT:
                 GlobalClock.restart(); //reset the elasped time
+                CurrentAlgorithmText.updateText("Current Algorithm: Bubblesort");
+
                 nums = numberGenerator(100); //create the array of unsorted numbers
                 
                 bubbleSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
-                intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
+                intermission(screen, currentSort, SELECTION_SORT); //display the "up next" text
                 Number_of_comparsions = 0; //reset the comparsions
                 break;
+
+            case SELECTION_SORT:
+                GlobalClock.restart();
+                CurrentAlgorithmText.updateText("Current Algorithm: Selectionsort");
+
+                nums = numberGenerator(100); //create the array of unsorted numbers
+                
+                selectionSort(nums, screen);
+                colorBlocksGreen(nums, screen);
+                
+                intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
+                Number_of_comparsions = 0; //reset the comparsions
 
             default:
                 break;
