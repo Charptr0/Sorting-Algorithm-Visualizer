@@ -14,9 +14,9 @@ using std::vector;
 sf::Clock GlobalClock;
 int Number_of_comparsions = 0;
 Text ComparsionText(std::to_string(Number_of_comparsions) + "Comparsions", 0, 0, TEXT_SIZE);
-Text AuthorText("Made by Charptr0", RESOLUTION_X-200, 0, TEXT_SIZE);
-Text ElaspedTimeText("Elasped Time: 0s", RESOLUTION_X-(RESOLUTION_X*0.8), 0, TEXT_SIZE);
-Text CurrentAlgorithmText("", RESOLUTION_X-(RESOLUTION_X*0.5), 0, TEXT_SIZE);
+Text AuthorText("Made by Charptr0", 0, 25, TEXT_SIZE);
+Text ElaspedTimeText("Elasped Time: 0s", 0, 50, TEXT_SIZE);
+Text CurrentAlgorithmText("", 0, 75, TEXT_SIZE);
 
 void grabEvents(sf::RenderWindow &screen) 
 {
