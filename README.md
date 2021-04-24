@@ -2,8 +2,10 @@
 
 Visualize sorting algorithms in SFML
 
-## Current Feature (v1.0)
-Currently, only bubblesort has been fully implemented. The program will just loop through this algorithm forever.
+## Current Feature (v2.0)
+- Bubblesort
+- Selectionsort
+- Insertionsort
 
 
 # Branches
@@ -38,7 +40,13 @@ g++ main.o -o visualizer -lsfml-graphics -lsfml-window -lsfml-system
 ```
 
 ## Version
-1.0
+2.0
 
-## Version 1.0 (Bubblesort)
-<img src="https://i.imgur.com/TE6hX5h.gif" width=500px></img>
+## Bubblesort
+<img src="https://i.imgur.com/BmiVVL1.gif" width=500px></img>
+
+## Selectionsort
+<img src="https://i.imgur.com/aWzCH08.gif" width=500px></img>
+
+## Insertionsort
+<img src="https://i.imgur.com/gYPV2h0.gif" width=500px></img>
