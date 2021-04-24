@@ -1,6 +1,7 @@
 #include "Algorithms/algo_list.cpp"
 #include "Algorithms/bubblesort.cpp"
 #include "Algorithms/selectionsort.cpp"
+#include "Algorithms/insertionsort.cpp"
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
 
@@ -17,6 +18,10 @@ void intermission(sf::RenderWindow &screen, char &currentSort, const char nextSo
         
         case SELECTION_SORT:
             next_algo_name += "Selectionsort";
+            break;
+
+        case INSERTION_SORT:
+            next_algo_name += "Insertionsort";
             break;
 
         default:
@@ -47,7 +52,7 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE); //create the screen and add the title
 
-    char currentSort = BUBBLE_SORT; //set the current sorting algo to be bubble sort
+    char currentSort = INSERTION_SORT; //set the current sorting algo to be bubble sort
 
     vector<int>nums; //array to hold the random numbers
 
@@ -81,8 +86,22 @@ int main()
                 selectionSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
+                intermission(screen, currentSort, INSERTION_SORT); //display the "up next" text
+                Number_of_comparsions = 0; //reset the comparsions
+                break;
+
+            case INSERTION_SORT:
+                GlobalClock.restart();
+                CurrentAlgorithmText.updateText("Current Algorithm: Insertionsort");
+
+                nums = numberGenerator(100); //create the array of unsorted numbers
+                
+                insertionSort(nums, screen);
+                colorBlocksGreen(nums, screen);
+                
                 intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
                 Number_of_comparsions = 0; //reset the comparsions
+                break;
 
             default:
                 break;
