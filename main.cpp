@@ -1,7 +1,16 @@
 #include "Algorithms/algo_list.cpp"
 #include "Algorithms/bubblesort.cpp"
+#include "Algorithms/selectionsort.cpp"
+#include "Algorithms/insertionsort.cpp"
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
+
+void reset()
+{
+    Number_of_comparsions = 0;
+    GlobalClock.restart();
+}
+
 
 void intermission(sf::RenderWindow &screen, char &currentSort, const char nextSort)
 {
@@ -18,11 +27,15 @@ void intermission(sf::RenderWindow &screen, char &currentSort, const char nextSo
             next_algo_name += "Selectionsort";
             break;
 
+        case INSERTION_SORT:
+            next_algo_name += "Insertionsort";
+            break;
+
         default:
             break;
     }
 
-    Text upNextText(next_algo_name, RESOLUTION_X-(RESOLUTION_X*0.6), RESOLUTION_Y-(RESOLUTION_Y*0.8));
+    Text upNextText(next_algo_name, 0, 100, TEXT_SIZE);
 
     GlobalClock.restart();
     sf::Time elaspedTime = GlobalClock.getElapsedTime();
@@ -59,14 +72,39 @@ int main()
         switch(currentSort)
         {
             case BUBBLE_SORT:
-                GlobalClock.restart(); //reset the elasped time
+                CurrentAlgorithmText.updateText("Current Algorithm: Bubblesort");
+
                 nums = numberGenerator(100); //create the array of unsorted numbers
                 
                 bubbleSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
+                intermission(screen, currentSort, SELECTION_SORT); //display the "up next" text
+                reset();
+                break;
+
+            case SELECTION_SORT:
+                CurrentAlgorithmText.updateText("Current Algorithm: Selectionsort");
+
+                nums = numberGenerator(100); //create the array of unsorted numbers
+                
+                selectionSort(nums, screen);
+                colorBlocksGreen(nums, screen);
+                
+                intermission(screen, currentSort, INSERTION_SORT); //display the "up next" text
+                reset();
+                break;
+
+            case INSERTION_SORT:
+                CurrentAlgorithmText.updateText("Current Algorithm: Insertionsort");
+
+                nums = numberGenerator(100); //create the array of unsorted numbers
+                
+                insertionSort(nums, screen);
+                colorBlocksGreen(nums, screen);
+                
                 intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
-                Number_of_comparsions = 0; //reset the comparsions
+                reset();
                 break;
 
             default:

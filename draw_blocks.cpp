@@ -14,9 +14,9 @@ using std::vector;
 sf::Clock GlobalClock;
 int Number_of_comparsions = 0;
 Text ComparsionText(std::to_string(Number_of_comparsions) + "Comparsions", 0, 0, TEXT_SIZE);
-Text AuthorText("Made by Charptr0", RESOLUTION_X-200, 0, TEXT_SIZE);
-Text ElaspedTimeText("Elasped Time: 0s", RESOLUTION_X-(RESOLUTION_X*0.8), 0, TEXT_SIZE);
-Text CurrentAlgorithmText("Current Algorithm: Bubblesort ", RESOLUTION_X-(RESOLUTION_X*0.5), 0, TEXT_SIZE);
+Text AuthorText("Made by Charptr0", 0, 25, TEXT_SIZE);
+Text ElaspedTimeText("Elasped Time: 0s", 0, 50, TEXT_SIZE);
+Text CurrentAlgorithmText("", 0, 75, TEXT_SIZE);
 
 void grabEvents(sf::RenderWindow &screen) 
 {
@@ -64,8 +64,8 @@ void drawToScreen(vector<int>&nums, sf::RenderWindow &screen)
         sf::RectangleShape block;
 
         block.setFillColor(sf::Color::White); //set the rectangle color to white
-        block.setOutlineColor(sf::Color::Magenta);
-        block.setOutlineThickness(2.f);
+        block.setOutlineColor(sf::Color::Black);
+        block.setOutlineThickness(1.f);
         block.setPosition(sf::Vector2f(offset_x, RESOLUTION_Y-rectHeight)); //set the position
         block.setSize(sf::Vector2f(rectLength, rectHeight)); 
 
@@ -114,8 +114,8 @@ void colorBlocksGreen(const vector<int>&nums, sf::RenderWindow &screen, int inde
         else {block.setFillColor(sf::Color::White);} //any block that is after the index var, color it white
 
         //same code from drawToScreen()
-        block.setOutlineColor(sf::Color::Magenta);
-        block.setOutlineThickness(2.f);
+        block.setOutlineColor(sf::Color::Black);
+        block.setOutlineThickness(1.f);
         block.setPosition(sf::Vector2f(offset_x, RESOLUTION_Y-rectHeight));
         block.setSize(sf::Vector2f(rectLength, rectHeight));
 

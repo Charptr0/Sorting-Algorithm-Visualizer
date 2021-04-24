@@ -5,7 +5,7 @@ void bubbleSort(vector<int>&nums, sf::RenderWindow &screen)
     //normal bubblesort algorithm
     for(int i = 0; i < nums.size(); i++)
     {
-        for(int j = 0; j < nums.size()-1; j++)
+        for(int j = 0; j < nums.size()-(i+1); j++)
         {
             grabEvents(screen);
             
