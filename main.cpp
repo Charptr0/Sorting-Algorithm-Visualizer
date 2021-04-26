@@ -64,7 +64,7 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE); //create the screen and add the title
 
-    char currentSort = INSERTION_SORT; //set the current sorting algo to be bubble sort
+    char currentSort = BUBBLE_SORT; //set the current sorting algo to be bubble sort
 
     vector<int>nums; //array to hold the random numbers
 
@@ -120,7 +120,7 @@ int main()
                 mergeSort(nums, 0, nums.size()-1, screen);
                 colorBlocksGreen(nums, screen);
                 
-                intermission(screen, currentSort, MERGE_SORT); //display the "up next" text
+                intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
                 reset();
                 break;
 
