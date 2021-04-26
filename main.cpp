@@ -2,6 +2,7 @@
 #include "Algorithms/bubblesort.cpp"
 #include "Algorithms/selectionsort.cpp"
 #include "Algorithms/insertionsort.cpp"
+#include "Algorithms/mergesort.cpp"
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
 
@@ -29,6 +30,10 @@ void intermission(sf::RenderWindow &screen, char &currentSort, const char nextSo
 
         case INSERTION_SORT:
             next_algo_name += "Insertionsort";
+            break;
+
+        case MERGE_SORT:
+            next_algo_name += "Mergesort";
             break;
 
         default:
@@ -59,7 +64,7 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE); //create the screen and add the title
 
-    char currentSort = BUBBLE_SORT; //set the current sorting algo to be bubble sort
+    char currentSort = INSERTION_SORT; //set the current sorting algo to be bubble sort
 
     vector<int>nums; //array to hold the random numbers
 
@@ -98,12 +103,24 @@ int main()
             case INSERTION_SORT:
                 CurrentAlgorithmText.updateText("Current Algorithm: Insertionsort");
 
-                nums = numberGenerator(100); //create the array of unsorted numbers
+                nums = numberGenerator(250); //create the array of unsorted numbers
                 
                 insertionSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
-                intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
+                intermission(screen, currentSort, MERGE_SORT); //display the "up next" text
+                reset();
+                break;
+
+            case MERGE_SORT:
+                CurrentAlgorithmText.updateText("Current Algorithm: Mergesort");
+
+                nums = numberGenerator(250); //create the array of unsorted numbers
+                
+                mergeSort(nums, 0, nums.size()-1, screen);
+                colorBlocksGreen(nums, screen);
+                
+                intermission(screen, currentSort, MERGE_SORT); //display the "up next" text
                 reset();
                 break;
 
