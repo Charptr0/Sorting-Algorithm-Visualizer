@@ -3,6 +3,7 @@
 #include "Algorithms/selectionsort.cpp"
 #include "Algorithms/insertionsort.cpp"
 #include "Algorithms/mergesort.cpp"
+#include "Algorithms/quicksort.cpp"
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
 
@@ -13,7 +14,7 @@ void reset()
 }
 
 
-void intermission(sf::RenderWindow &screen, char &currentSort, const char nextSort)
+void upNext(sf::RenderWindow &screen, char &currentSort, const char nextSort)
 {
     std::string next_algo_name = "Up Next: ";
 
@@ -36,6 +37,9 @@ void intermission(sf::RenderWindow &screen, char &currentSort, const char nextSo
             next_algo_name += "Mergesort";
             break;
 
+        case QUICK_SORT:
+            next_algo_name += "Quicksort";
+            break;
         default:
             break;
     }
@@ -84,7 +88,7 @@ int main()
                 bubbleSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
-                intermission(screen, currentSort, SELECTION_SORT); //display the "up next" text
+                upNext(screen, currentSort, SELECTION_SORT); //display the "up next" text
                 reset();
                 break;
 
@@ -96,19 +100,19 @@ int main()
                 selectionSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
-                intermission(screen, currentSort, INSERTION_SORT); //display the "up next" text
+                upNext(screen, currentSort, INSERTION_SORT); //display the "up next" text
                 reset();
                 break;
 
             case INSERTION_SORT:
                 CurrentAlgorithmText.updateText("Current Algorithm: Insertionsort");
 
-                nums = numberGenerator(250); //create the array of unsorted numbers
+                nums = numberGenerator(100); //create the array of unsorted numbers
                 
                 insertionSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
-                intermission(screen, currentSort, MERGE_SORT); //display the "up next" text
+                upNext(screen, currentSort, MERGE_SORT); //display the "up next" text
                 reset();
                 break;
 
@@ -120,7 +124,19 @@ int main()
                 mergeSort(nums, 0, nums.size()-1, screen);
                 colorBlocksGreen(nums, screen);
                 
-                intermission(screen, currentSort, BUBBLE_SORT); //display the "up next" text
+                upNext(screen, currentSort, QUICK_SORT); //display the "up next" text
+                reset();
+                break;
+
+            case QUICK_SORT:
+                CurrentAlgorithmText.updateText("Current Algorithm: Quicksort");
+
+                nums = numberGenerator(250);
+                
+                quickSort(nums, 0, nums.size()-1, screen);
+                colorBlocksGreen(nums, screen);
+                
+                upNext(screen, currentSort, BUBBLE_SORT); //display the "up next" text
                 reset();
                 break;
 
