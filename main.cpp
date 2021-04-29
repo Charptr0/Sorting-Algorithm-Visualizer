@@ -4,6 +4,7 @@
 #include "Algorithms/insertionsort.cpp"
 #include "Algorithms/mergesort.cpp"
 #include "Algorithms/quicksort.cpp"
+#include "Algorithms/heapsort.cpp"
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
 
@@ -40,6 +41,11 @@ void upNext(sf::RenderWindow &screen, char &currentSort, const char nextSort)
         case QUICK_SORT:
             next_algo_name += "Quicksort";
             break;
+
+        case HEAP_SORT:
+            next_algo_name += "Heapsort";
+            break;
+
         default:
             break;
     }
@@ -68,7 +74,7 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE); //create the screen and add the title
 
-    char currentSort = BUBBLE_SORT; //set the current sorting algo to be bubble sort
+    char currentSort = HEAP_SORT; //set the current sorting algo to be bubble sort
 
     vector<int>nums; //array to hold the random numbers
 
@@ -134,6 +140,18 @@ int main()
                 nums = numberGenerator(250);
                 
                 quickSort(nums, 0, nums.size()-1, screen);
+                colorBlocksGreen(nums, screen);
+                
+                upNext(screen, currentSort, HEAP_SORT); //display the "up next" text
+                reset();
+                break;
+
+            case HEAP_SORT:
+                CurrentAlgorithmText.updateText("Current Algorithm: Heapsort");
+
+                nums = numberGenerator(250);
+                
+                heapSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
                 upNext(screen, currentSort, BUBBLE_SORT); //display the "up next" text

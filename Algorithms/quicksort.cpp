@@ -1,6 +1,6 @@
 #include "../draw_blocks.cpp"
 
-void swap(int &num1, int &num2)
+void quick_sort_swap(int &num1, int &num2)
 {
     int temp = num1;
     num1 = num2;
@@ -23,7 +23,7 @@ int partition(vector<int>&nums, int low, int high, sf::RenderWindow &screen)
 
         else
         {
-            swap(nums[j], nums[i]);
+            quick_sort_swap(nums[j], nums[i]);
             i++;
             j++;
         }
@@ -31,7 +31,7 @@ int partition(vector<int>&nums, int low, int high, sf::RenderWindow &screen)
         drawToScreen(nums, screen);
     }
 
-    swap(nums[i], nums[high]);
+    quick_sort_swap(nums[i], nums[high]);
 
     drawToScreen(nums, screen);
 
