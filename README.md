@@ -2,10 +2,11 @@
 
 Visualize sorting algorithms in SFML
 
-## Current Feature (v2.0)
+## Current Feature (v2.5)
 - Bubblesort
 - Selectionsort
 - Insertionsort
+- Mergesort
 
 
 # Branches
@@ -50,3 +51,6 @@ g++ main.o -o visualizer -lsfml-graphics -lsfml-window -lsfml-system
 
 ## Insertionsort
 <img src="https://i.imgur.com/gYPV2h0.gif" width=500px></img>
+
+## Mergesort
+<img src="https://i.imgur.com/Op6K0GS.gif" width=500px></img>
