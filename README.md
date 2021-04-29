@@ -7,6 +7,7 @@ Visualize sorting algorithms in SFML
 - Selectionsort
 - Insertionsort
 - Mergesort
+- Quicksort
 - Heapsort
 
 # Branches
@@ -48,6 +49,9 @@ g++ main.o -o visualizer -lsfml-graphics -lsfml-window -lsfml-system
 
 ## Mergesort
 <img src="https://i.imgur.com/Op6K0GS.gif" width=500px></img>
+
+## Quicksort
+<img src="https://i.imgur.com/Zvk0p2K.gif" width=500px></img>
 
 ## Heapsort
 <img src="https://i.imgur.com/tvu9R3h.gif" width=500px></img>
