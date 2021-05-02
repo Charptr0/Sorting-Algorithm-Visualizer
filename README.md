@@ -2,12 +2,13 @@
 
 Visualize sorting algorithms in SFML
 
-## Current Feature (v2.5)
+## Supported Algorithms
 - Bubblesort
 - Selectionsort
 - Insertionsort
 - Mergesort
-
+- Quicksort
+- Heapsort
 
 # Branches
 - Master
@@ -16,9 +17,6 @@ Visualize sorting algorithms in SFML
 - Beta
   * Experimental branch
   
-- Bubblesort_forever
-  * The program will only show the bubblesort alogorithm with increasing sample size.
-  * Great for a screen saver
 
 # Installation
 You will need to install the **SFML library** to run this program.
@@ -40,9 +38,6 @@ g++ main.o -o visualizer -lsfml-graphics -lsfml-window -lsfml-system
 ./visualizer
 ```
 
-## Version
-2.0
-
 ## Bubblesort
 <img src="https://i.imgur.com/BmiVVL1.gif" width=500px></img>
 
@@ -54,3 +49,9 @@ g++ main.o -o visualizer -lsfml-graphics -lsfml-window -lsfml-system
 
 ## Mergesort
 <img src="https://i.imgur.com/Op6K0GS.gif" width=500px></img>
+
+## Quicksort
+<img src="https://i.imgur.com/Zvk0p2K.gif" width=500px></img>
+
+## Heapsort
+<img src="https://i.imgur.com/tvu9R3h.gif" width=500px></img>
