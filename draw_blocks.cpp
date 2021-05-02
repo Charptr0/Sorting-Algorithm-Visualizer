@@ -14,7 +14,7 @@ using std::vector;
 sf::Clock GlobalClock;
 int Number_of_comparsions = 0;
 Text ComparsionText(std::to_string(Number_of_comparsions) + "Comparsions", 0, 0, TEXT_SIZE);
-Text AuthorText("Made by Charptr0", 0, 25, TEXT_SIZE);
+Text AuthorText("Made by Charptr0 (github.com/Charptr0)", 0, 25, TEXT_SIZE);
 Text ElaspedTimeText("Elasped Time: 0s", 0, 50, TEXT_SIZE);
 Text CurrentAlgorithmText("", 0, 75, TEXT_SIZE);
 

@@ -8,13 +8,14 @@
 
 const std::string TITLE = "Sorting Algorithm Visualizer";
 
+//reset the comparsions counter and the clock
 void reset()
 {
     Number_of_comparsions = 0;
     GlobalClock.restart();
 }
 
-
+//display the upNext text and change the sorting algorithm
 void upNext(sf::RenderWindow &screen, char &currentSort, const char nextSort)
 {
     std::string next_algo_name = "Up Next: ";
@@ -74,7 +75,7 @@ int main()
 
     screen.create(sf::VideoMode(RESOLUTION_X,RESOLUTION_Y), TITLE); //create the screen and add the title
 
-    char currentSort = HEAP_SORT; //set the current sorting algo to be bubble sort
+    char currentSort = BUBBLE_SORT; //set the first sorting algorithm to be bubble sort
 
     vector<int>nums; //array to hold the random numbers
 
@@ -82,8 +83,9 @@ int main()
 
     while(screen.isOpen())
     {
-        grabEvents(screen);
+        grabEvents(screen); //grab events
 
+        //base on what the currentSort is set to, it will display that algorithm
         switch(currentSort)
         {
             case BUBBLE_SORT:
@@ -113,24 +115,24 @@ int main()
             case INSERTION_SORT:
                 CurrentAlgorithmText.updateText("Current Algorithm: Insertionsort");
 
-                nums = numberGenerator(100); //create the array of unsorted numbers
-                
+                nums = numberGenerator(100); 
+
                 insertionSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
-                upNext(screen, currentSort, MERGE_SORT); //display the "up next" text
+                upNext(screen, currentSort, MERGE_SORT);
                 reset();
                 break;
 
             case MERGE_SORT:
                 CurrentAlgorithmText.updateText("Current Algorithm: Mergesort");
 
-                nums = numberGenerator(250); //create the array of unsorted numbers
+                nums = numberGenerator(250);
                 
                 mergeSort(nums, 0, nums.size()-1, screen);
                 colorBlocksGreen(nums, screen);
                 
-                upNext(screen, currentSort, QUICK_SORT); //display the "up next" text
+                upNext(screen, currentSort, QUICK_SORT); 
                 reset();
                 break;
 
@@ -142,7 +144,7 @@ int main()
                 quickSort(nums, 0, nums.size()-1, screen);
                 colorBlocksGreen(nums, screen);
                 
-                upNext(screen, currentSort, HEAP_SORT); //display the "up next" text
+                upNext(screen, currentSort, HEAP_SORT);
                 reset();
                 break;
 
@@ -154,7 +156,7 @@ int main()
                 heapSort(nums, screen);
                 colorBlocksGreen(nums, screen);
                 
-                upNext(screen, currentSort, BUBBLE_SORT); //display the "up next" text
+                upNext(screen, currentSort, BUBBLE_SORT); 
                 reset();
                 break;
 
